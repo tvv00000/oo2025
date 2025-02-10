@@ -1,6 +1,0 @@
-function kehaindex(cm:number, kg:number):number{
-    let m:number=cm/100;
-    return kg/(m*m);
-}
-
-console.log(kehaindex(101, 110));
