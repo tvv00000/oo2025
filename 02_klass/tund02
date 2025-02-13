@@ -1,0 +1,43 @@
+class Resistor {
+    r: number = 0;
+  
+    constructor(r: number) {
+      this.r = r;
+    }
+  
+    // prg pole
+    getCurrent(u: number): number {
+      return u / this.r;
+    }
+  
+    // voltage calc
+    getVoltage(i: number): number {
+      return i * this.r;
+    }
+  }
+  
+  const currentList = [5, 0.016, 0.1, 0.03];
+  const resistorList = [2, 304, 100, 328];
+  const maxWatt = 0.5;
+  console.log("max watt on " + maxWatt);
+  
+  const results = [];
+  
+  currentList.forEach((current, index) => {
+    let resistor = new Resistor(resistorList[index]);
+    let voltage = resistor.getVoltage(current);
+  
+    const watt = current * voltage;
+    const status = watt >= maxWatt ? "PROBLEEM" : "KORRAS";
+  
+    results.push({
+        Current: current + " A",
+        Resistor: resistor.r + " Ω",
+        Voltage: voltage + " V",
+        Watt: parseFloat(watt.toFixed(3)) + " W",
+        Status: status
+    });
+  });
+  
+  console.table(results);
+  
