@@ -1,5 +1,5 @@
 class Book {
-    constructor(public id: number, public nimetus: string) {}
+    constructor(public id: number, public nimi: string) {}
 }
 
 class Library {
@@ -18,9 +18,9 @@ class Library {
     }
 }
 
-const book1 = new Book(1, "Õpik: Tere Pere");
-const book2 = new Book(2, "Õpik: Test");
-const book3 = new Book(3, "Õpik: Parim");
+const book1 = new Book(1, "Tere Pere");
+const book2 = new Book(2, "Test");
+const book3 = new Book(3, "Parim");
 
 const library = new Library();
 
@@ -29,9 +29,9 @@ library.addBook(book2);
 library.addBook(book3);
 
 const books = library.getBooks();
-console.log("Kõik raamatud:", books);
+console.log("Koik raamatud:", books);
 
-const foundBook1 = library.findBook(1);
-console.log("Leitud raamat:", foundBook1);
-const foundBook2 = library.findBook(4);
-console.log("Leitud raamat:", foundBook2);
+const find1 = library.findBook(1);
+console.log("Leitud raamat:", find1);
+const find2 = library.findBook(4);
+console.log("Leitud raamat:", find2);

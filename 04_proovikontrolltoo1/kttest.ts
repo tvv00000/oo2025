@@ -1,15 +1,4 @@
-/*
-
- Kuva tekkinud kujund ekraanile.
-
- Võimalda küsida punktide uued asukohad ning külgede pikkused, näita kujundit ekraanil.
-
-*/
-
-
-
 class Kolmnurk {
-
     private xCoords: number[];
     private yCoords: number[];
 
@@ -77,7 +66,6 @@ kolmnurk1.naitaKolmnurk();
 kolmnurk1.lisaPunkt(3, 3);
 
 kolmnurk2.move(2, 2);
-
 
 kolmnurk1.naitaKolmnurk();
 kolmnurk1.resize(2);

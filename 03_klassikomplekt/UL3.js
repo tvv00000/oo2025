@@ -1,7 +1,7 @@
 var Book = /** @class */ (function () {
-    function Book(id, nimetus) {
+    function Book(id, nimi) {
         this.id = id;
-        this.nimetus = nimetus;
+        this.nimi = nimi;
     }
     return Book;
 }());
@@ -20,16 +20,16 @@ var Library = /** @class */ (function () {
     };
     return Library;
 }());
-var book1 = new Book(1, "Õpik: Tere Pere");
-var book2 = new Book(2, "Õpik: Test");
-var book3 = new Book(3, "Õpik: Parim");
+var book1 = new Book(1, "Tere Pere");
+var book2 = new Book(2, "Test");
+var book3 = new Book(3, "Parim");
 var library = new Library();
 library.addBook(book1);
 library.addBook(book2);
 library.addBook(book3);
 var books = library.getBooks();
-console.log("Kõik raamatud:", books);
-var foundBook1 = library.findBook(1);
-console.log("Leitud raamat:", foundBook1);
-var foundBook2 = library.findBook(4);
-console.log("Leitud raamat:", foundBook2);
+console.log("Koik raamatud:", books);
+var find1 = library.findBook(1);
+console.log("Leitud raamat:", find1);
+var find2 = library.findBook(4);
+console.log("Leitud raamat:", find2);
