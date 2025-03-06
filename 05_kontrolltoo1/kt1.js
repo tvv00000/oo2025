@@ -52,9 +52,11 @@ var kolmasUl = /** @class */ (function () {
     };
     kolmasUl.prototype.mdea = function (muutus) {
         var palkKokku = this.palk;
+        console.log("Aasta ", 0, palkKokku);
         var koefitsiendiKeskmine = 1;
         for (var i = 0; i < muutus.length; i++) {
             koefitsiendiKeskmine *= muutus[i];
+            console.log(koefitsiendiKeskmine);
         }
         koefitsiendiKeskmine = Math.sqrt(koefitsiendiKeskmine);
         console.log(koefitsiendiKeskmine);
@@ -69,3 +71,9 @@ var palk1 = new kolmasUl(1000);
 var palk2 = new kolmasUl(2000);
 palk1.aastad([1.5, 2, 0.5]);
 palk1.mdea([1.5, 2, 0.5]);
+/*
+
+1.5, 2, 0.5 = 1.5
+Math.sqrt(1.5) = 1.22...
+1000 * 1.22... (3 korda)
+*/ 

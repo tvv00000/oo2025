@@ -65,10 +65,12 @@ class kolmasUl{
 
     mdea(muutus: number[]):void{
         let palkKokku:number = this.palk;
+        console.log("Aasta ", 0, palkKokku);
         let koefitsiendiKeskmine:number = 1;
 
         for (let i = 0; i < muutus.length; i++) {
             koefitsiendiKeskmine *= muutus[i];
+            console.log(koefitsiendiKeskmine);
         }
 
         koefitsiendiKeskmine = Math.sqrt(koefitsiendiKeskmine);
@@ -86,3 +88,10 @@ let palk2 = new kolmasUl(2000);
 
 palk1.aastad([1.5, 2, 0.5]);
 palk1.mdea([1.5, 2, 0.5]);
+
+/*
+
+1.5, 2, 0.5 = 1.5
+Math.sqrt(1.5) = 1.22...
+1000 * 1.22... (3 korda)
+*/
