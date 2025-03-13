@@ -24,7 +24,7 @@ class Koer implements Loom {
     }
 
     vanusFunc(): void {
-        console.log(this.nimi, "on", this.vanus, "aastane")
+        console.log(this.nimi, "on", this.vanus, "aastane");
     }
 }
 
@@ -46,7 +46,7 @@ class Kass implements Loom {
     }
 
     vanusFunc(): void {
-        console.log(this.nimi, "on", this.vanus, "aastane")
+        console.log(this.nimi, "on", this.vanus, "aastane");
     }
 }
 
@@ -55,6 +55,8 @@ let koer1: Loom = new Koer("Max", 5);
 koer1.heli();
 koer1.varv();
 koer1.vanusFunc();
+
+console.log("-------------------------");
 
 // 2
 let kass1: Loom = new Kass("Daisy", 3);

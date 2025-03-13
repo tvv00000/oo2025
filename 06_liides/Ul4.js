@@ -35,6 +35,7 @@ var koer1 = new Koer("Max", 5);
 koer1.heli();
 koer1.varv();
 koer1.vanusFunc();
+console.log("-------------------------");
 // 2
 var kass1 = new Kass("Daisy", 3);
 kass1.heli();
