@@ -1,6 +1,6 @@
 import { highway } from '../07_testid/highway';
 import { id } from '../07_testid/id';
-import { add, subtract, multiply, divide } from '../07_testid/calculator';
+import { add, subtract, multiply, divide } from '../07_testid/kalkulaator';
 
 function sum(a: number, b: number): number {
     return a + b;
