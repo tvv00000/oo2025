@@ -1,6 +1,7 @@
 import { highway } from '../07_testid/highway';
 import { id } from '../07_testid/id';
-import { add, subtract, multiply, divide } from '../07_testid/kalkulaator';
+//import { kalkulaator } from '../07_testid/kalkulaator';
+
 
 function sum(a: number, b: number): number {
     return a + b;
@@ -28,4 +29,17 @@ describe('id check', () => {
   });
 })
 
-test("BasicCalculator test", () => { const calc = new BasicCalculator(); expect(calc.add(2, 3)).toBe(5); expect(calc.subtract(5, 3)).toBe(2); expect(calc.multiply(2, 3)).toBe(6); expect(calc.divide(6, 2)).toBe(3); expect(() => calc.divide(5, 0)).toThrow("Cannot divide by zero"); });
+
+import { Rectangle } from '../07_testid/Rectangle';
+
+describe('Rectangle', () => {
+  test('calculate area', () => {
+    const rect = new Rectangle(10, 5);
+    expect(rect.getArea()).toBe(50);
+  });
+
+  test('calculate perimeter', () => {
+    const rect = new Rectangle(10, 5);
+    expect(rect.getPerimeter()).toBe(30);
+  });
+});
