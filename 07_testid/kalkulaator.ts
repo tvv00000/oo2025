@@ -1,23 +1,20 @@
-export interface Calculator { add(a: number, b: number): number; subtract(a: number, b: number): number; multiply(a: number, b: number): number; divide(a: number, b: number): number; }
+// 1. Liides (Interface) export interface Shape { getArea(): number; getPerimeter(): number; }
 
-export class BasicCalculator implements Calculator { add(a: number, b: number): number { return a + b; }
+// 2. Realiseeriv klass (Ristkülik) export class Rectangle implements Shape { constructor(private width: number, private height: number) {}
 
-subtract(a: number, b: number): number {
-    return a - b;
+getArea(): number {
+    return this.width * this.height;
 }
 
-multiply(a: number, b: number): number {
-    return a * b;
-}
-
-divide(a: number, b: number): number {
-    if (b === 0) {
-        throw new Error("Cannot divide by zero");
-    }
-    return a / b;
+getPerimeter(): number {
+    return 2 * (this.width + this.height);
 }
 
 }
 
-const calculator = new BasicCalculator(); console.log("Addition:", calculator.add(10, 5)); console.log("Subtraction:", calculator.subtract(10, 5)); console.log("Multiplication:", calculator.multiply(10, 5)); console.log("Division:", calculator.divide(10, 5));
+// 3. Testid (Jest) // Installi Jest: npm install --save-dev jest @types/jest ts-jest
+
+test("Rectangle test", () => { const rect = new Rectangle(10, 5); expect(rect.getArea()).toBe(50); expect(rect.getPerimeter()).toBe(30); });
+
+// 4. Näitprogramm (index.ts) const rectangle = new Rectangle(10, 5); console.log("Area:", rectangle.getArea()); console.log("Perimeter:", rectangle.getPerimeter());
 
