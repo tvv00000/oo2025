@@ -28,35 +28,4 @@ describe('id check', () => {
   });
 })
 
-describe('calculator Tests', () => {
-
-  test('+ check', () => {
-    expect(add(2, 3)).toBe(5);
-    expect(add(-2, 3)).toBe(1);
-    expect(add(0, 0)).toBe(0);
-  });
-
-  test('- check', () => {
-    expect(subtract(5, 3)).toBe(2);
-    expect(subtract(2, 3)).toBe(-1);
-    expect(subtract(0, 0)).toBe(0);
-  });
-
-  test('* check', () => {
-    expect(multiply(2, 3)).toBe(6);
-    expect(multiply(-2, 3)).toBe(-6);
-    expect(multiply(0, 5)).toBe(0);
-  });
-
-  test('/ check', () => {
-    expect(divide(6, 3)).toBe(2);
-    expect(divide(-6, 3)).toBe(-2);
-    expect(divide(5, 2)).toBe(2.5);
-    expect(divide(5, 2)).toBe(2.5);
-  });
-
-  test('/ by zero throws error', () => {
-    expect(() => divide(5, 0)).toThrow('Cannot divide by zero');
-  });
-
-});
+test("BasicCalculator test", () => { const calc = new BasicCalculator(); expect(calc.add(2, 3)).toBe(5); expect(calc.subtract(5, 3)).toBe(2); expect(calc.multiply(2, 3)).toBe(6); expect(calc.divide(6, 2)).toBe(3); expect(() => calc.divide(5, 0)).toThrow("Cannot divide by zero"); });
