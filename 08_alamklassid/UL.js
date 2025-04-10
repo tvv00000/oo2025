@@ -28,7 +28,7 @@ var Relv1 = /** @class */ (function (_super) {
         return _super.call(this, "Pulk", 10) || this;
     }
     Relv1.prototype.kasuta = function () {
-        console.log("Kasutatakse relva " + this.nimi + ", tekitades " + this.kahju + " kahju.");
+        console.log("Kasutatakse relva " + this.nimi + ", tekitades " + this.kahju + " kahju!");
     };
     return Relv1;
 }(Relv));
@@ -39,7 +39,7 @@ var Relv2 = /** @class */ (function (_super) {
         return _super.call(this, "Padi", 2) || this;
     }
     Relv2.prototype.kasuta = function () {
-        console.log("Kasutatakse relva " + this.nimi + ", tekitades " + this.kahju + " kahju. Keerutab õhus!");
+        console.log("Kasutatakse relva " + this.nimi + ", tekitades " + this.kahju + " kahju!");
     };
     return Relv2;
 }(Relv));
@@ -50,7 +50,7 @@ var Relv3 = /** @class */ (function (_super) {
         return _super.call(this, "Püstol", 65) || this;
     }
     Relv3.prototype.kasuta = function () {
-        console.log("Kasutatakse relva " + this.nimi + ", tekitades " + this.kahju + " kahju. Keerutab õhus!");
+        console.log("Kasutatakse relva " + this.nimi + ", tekitades " + this.kahju + " kahju!");
     };
     return Relv3;
 }(Relv));
@@ -60,3 +60,7 @@ var tegelased = [
     { nimi: "Hulk", elu: 120, relv: new Relv3() } //Püstol
 ];
 console.table(tegelased);
+tegelased.forEach(function (tegelane) {
+    console.log(tegelane.nimi + " kasutab oma relva:");
+    tegelane.relv.kasuta();
+});

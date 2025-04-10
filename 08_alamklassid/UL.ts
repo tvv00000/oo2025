@@ -12,7 +12,7 @@ class Relv1 extends Relv {
     }
 
     kasuta(): void {
-        console.log("Kasutatakse relva " + this.nimi + ", tekitades " + this.kahju + " kahju.");
+        console.log("Kasutatakse relva " + this.nimi + ", tekitades " + this.kahju + " kahju!");
     }
 }
 
@@ -23,7 +23,7 @@ class Relv2 extends Relv {
     }
 
     kasuta(): void {
-        console.log("Kasutatakse relva " + this.nimi + ", tekitades " + this.kahju + " kahju. Keerutab õhus!");
+        console.log("Kasutatakse relva " + this.nimi + ", tekitades " + this.kahju + " kahju!");
     }
 }
 
@@ -34,7 +34,7 @@ class Relv3 extends Relv {
     }
 
     kasuta(): void {
-        console.log("Kasutatakse relva " + this.nimi + ", tekitades " + this.kahju + " kahju. Keerutab õhus!");
+        console.log("Kasutatakse relva " + this.nimi + ", tekitades " + this.kahju + " kahju!");
     }
 }
 
@@ -47,3 +47,8 @@ const tegelased: any[] = [
 
 
 console.table(tegelased);
+
+tegelased.forEach(tegelane => {
+    console.log(tegelane.nimi + " kasutab oma relva:");
+    tegelane.relv.kasuta();
+});
