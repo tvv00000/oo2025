@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blackjack Game</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="game-board" style="display: none;">
+    <h1>Blackjack Game</h1>
+    
+    <!-- Player's Cards -->
+    <h2>Player's Cards</h2>
+    <div id="player-cards"></div>
+    <div id="player-total"></div>
+
+    <!-- Dealer's Cards (first card shown, second card hidden initially as 🂠) -->
+    <h2>Dealer's Cards</h2>
+    <div id="dealer-cards">
+      <span id="dealer-card-1"></span> <!-- First card (visible) -->
+      <span id="dealer-card-2">🂠</span> <!-- Second card (hidden initially as 🂠) -->
+    </div>
+    <div id="dealer-total"></div>
+
+    <!-- Game Controls -->
+    <button id="hit-button" onclick="playerAction('hit')">Hit</button>
+    <button id="stand-button" onclick="playerAction('stand')">Stand</button>
+  </div>
+
+  <!-- Game Result -->
+  <div id="result" style="display: none;"></div>
+
+  <!-- Settings -->
+  <div>
+    <h2>Game Settings</h2>
+    <label for="deck-type">Deck Type:</label>
+    <select id="deck-type">
+      <option value="standard">Standard</option>
+      <option value="odd">Odd</option>
+      <option value="even">Even</option>
+    </select>
+    <br>
+
+    <label for="special-rule-type">Special Rule:</label>
+    <select id="special-rule-type">
+      <option value="standard">Standard</option>
+      <option value="few">Few</option>
+      <option value="high">High</option>
+    </select>
+    <br>
+
+    <button onclick="startGame()">Start Game</button>
+  </div>
+
+  <script src="game.js"></script>
+</body>
+</html>

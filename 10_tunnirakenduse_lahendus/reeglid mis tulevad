@@ -1,0 +1,18 @@
+deck
+standard
+odd
+even
+1,2,3,4,5 deck
+
+
+specialRule
+none (standard)
+must hit 25
+cards are +1
+cards are -1
+
+
+
+todo
+make it so when you have ace it shows 1/11 value
+make game.ts shorter (new files)
