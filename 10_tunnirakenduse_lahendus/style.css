@@ -1,97 +1,76 @@
-/* style.css */
+/* General Body Styles */
 body {
-  font-family: 'Courier New', Courier, monospace;
-  background: #2c3e50;
-  color: #ecf0f1;
-  text-align: center;
+  background-color: #2E3B45;
+  color: #F1E6D2;
+  font-size: 18px;
+  font-family: 'Arial', sans-serif;
   margin: 0;
-  height: 100vh;
+  padding: 0;
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 100vh;
+  text-align: center;
 }
+
 #game {
-  background: #34495e;
-  border-radius: 15px;
-  padding: 1rem;
-  max-width: 500px;
-  width: 100%;
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
-  border: 2px solid #7f8c8d;
+  background-color: #1F9BCF;
+  padding: 20px;
+  width: 80%;
+  max-width: 500px; 
+  border: solid #006B8F 10px;
+  border-radius: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
 }
-h1 {
-  font-size: 2rem;
-  margin-bottom: 1rem;
-  font-weight: bold;
-  color: #e74c3c;
-  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
-}
-.hand {
-  margin: 1.5rem 0;
-  text-align: left;
-  font-size: 1.2rem;
-}
-.hand h2 {
-  margin-bottom: 0.5rem;
-  font-size: 1.4rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  color: #f39c12;
-}
-.cards {
-  font-size: 1.6rem;
-  margin-bottom: 0.5rem;
-  letter-spacing: 1px;
-  background-color: #7f8c8d;
-  border-radius: 8px;
-  padding: 0.5rem;
-}
-.cards span {
-  display: inline-block;
-  padding: 0.4rem;
-  background-color: #e74c3c;
-  border-radius: 5px;
-  color: #ecf0f1;
-  font-size: 1.2rem;
-}
+
 button {
-  background-color: #16a085;
-  color: white;
-  border: none;
-  border-radius: 12px;
-  padding: 0.6rem 1.6rem;
-  margin: 1rem 0.5rem;
-  font-size: 1rem;
+  color: #F1E6D2;
+  background-color: #1F9BCF;
+  border: solid #2E3B45 5px;
+  border-radius: 30px;
+  font-size: 18px;
+  padding: 10px 20px;
   cursor: pointer;
-  transition: background 0.3s, transform 0.3s;
-  width: 160px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 button:hover {
-  background-color: #1abc9c;
-  transform: scale(1.05);
+  background-color: #005C7F;
+  transform: translateY(-2px);
 }
-#message {
-  margin-top: 1rem;
+button:active {
+  background-color: #1F9BCF;
+  transform: translateY(1px);
+}
+
+.hand {
+  background-color: #005C7F;
+  border-radius: 10px;
+  padding: 10px 15px;
+  font-size: 16px;
   font-weight: bold;
-  font-size: 1.2rem;
-  color: #f39c12;
-  text-transform: uppercase;
 }
-#restart {
-  background-color: #e67e22;
+
+.menu {
+  background-color: #005C7F;
+  border-radius: 10px;
+  margin-top: 25px;
+  width: auto;
+  max-width: 500px;
+  margin: 20px auto;
+  padding: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
-#restart:hover {
-  background-color: #f39c12;
-}
-.rogue-bg {
-  background: url('https://cdn.pixabay.com/photo/2017/08/30/12/56/dungeon-2698425_960_720.jpg') no-repeat center center fixed;
-  background-size: cover;
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: -1;
-  opacity: 0.6;
+
+#game-settings,
+#message {
+  background-color: #007A9F;
+  border-radius: 10px;
+  padding: 10px;
+  margin: 10px;
+  font-weight: bold;
 }
