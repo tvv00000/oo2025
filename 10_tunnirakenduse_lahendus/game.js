@@ -52,6 +52,7 @@ function createDeck() {
     }
     return deck;
 }
+//chatgpt
 function shuffle(deck) {
     var _a;
     for (var i = deck.length - 1; i > 0; i--) {
@@ -87,20 +88,61 @@ function renderHand(hand, elementId, hideSecondCard) {
     var el = document.getElementById(elementId);
     el.innerHTML = hand.map(function (c, i) {
         if (hideSecondCard && i === 1)
-            return '🂠'; // Hidden card symbol
+            return '🂠';
         return "".concat(c.value).concat(c.suit);
     }).join(' ');
 }
 function updateUI() {
     renderHand(playerHand, 'player-hand');
-    renderHand(dealerHand, 'dealer-hand', !revealDealerCard);
-    document.getElementById('player-total').textContent = calculateTotal(playerHand).toString();
-    document.getElementById('dealer-total').textContent = revealDealerCard
-        ? calculateTotal(dealerHand).toString()
-        : '?';
+    var hideDealerCard = !revealDealerCard;
+    renderHand(dealerHand, 'dealer-hand', hideDealerCard);
+    var playerTotal = calculateTotal(playerHand);
+    document.getElementById('player-total').textContent = playerTotal.toString();
+    var dealerTotal;
+    if (revealDealerCard) {
+        dealerTotal = calculateTotal(dealerHand).toString();
+    }
+    else {
+        dealerTotal = '?';
+    }
+    document.getElementById('dealer-total').textContent = dealerTotal;
 }
-function showMessage(msg) {
-    document.getElementById('message').textContent = msg;
+function dealerTurn() {
+    return __awaiter(this, void 0, void 0, function () {
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    revealDealerCard = true;
+                    updateUI();
+                    return [4 /*yield*/, new Promise(function (resolve) { return setTimeout(resolve, 1000); })];
+                case 1:
+                    _a.sent();
+                    _a.label = 2;
+                case 2:
+                    if (!(calculateTotal(dealerHand) < 17)) return [3 /*break*/, 4];
+                    dealerHand.push(deck.pop());
+                    updateUI();
+                    return [4 /*yield*/, new Promise(function (resolve) { return setTimeout(resolve, 1000); })];
+                case 3:
+                    _a.sent();
+                    return [3 /*break*/, 2];
+                case 4:
+                    endGame();
+                    return [2 /*return*/];
+            }
+        });
+    });
+}
+function startGame() {
+    deck = createDeck();
+    shuffle(deck);
+    playerHand = [deck.pop(), deck.pop()];
+    dealerHand = [deck.pop(), deck.pop()];
+    gameOver = false;
+    revealDealerCard = false;
+    var messageElement = document.getElementById('message');
+    messageElement.textContent = '';
+    updateUI();
 }
 function endGame() {
     updateUI();
@@ -117,47 +159,9 @@ function endGame() {
         result = 'Dealer Wins!';
     else
         result = "It's a Tie!";
-    showMessage(result);
+    var messageElement = document.getElementById('message');
+    messageElement.textContent = result;
     gameOver = true;
-}
-function delay(ms) {
-    return new Promise(function (resolve) { return setTimeout(resolve, ms); });
-}
-function dealerTurn() {
-    return __awaiter(this, void 0, void 0, function () {
-        return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0:
-                    revealDealerCard = true;
-                    updateUI();
-                    return [4 /*yield*/, delay(1000)];
-                case 1:
-                    _a.sent(); // Reveal delay
-                    _a.label = 2;
-                case 2:
-                    if (!(calculateTotal(dealerHand) < 17)) return [3 /*break*/, 4];
-                    dealerHand.push(deck.pop());
-                    updateUI();
-                    return [4 /*yield*/, delay(1000)];
-                case 3:
-                    _a.sent(); // Delay between card draws
-                    return [3 /*break*/, 2];
-                case 4:
-                    endGame();
-                    return [2 /*return*/];
-            }
-        });
-    });
-}
-function startGame() {
-    deck = createDeck();
-    shuffle(deck);
-    playerHand = [deck.pop(), deck.pop()];
-    dealerHand = [deck.pop(), deck.pop()];
-    gameOver = false;
-    revealDealerCard = false;
-    showMessage('');
-    updateUI();
 }
 document.getElementById('hit').addEventListener('click', function () {
     if (gameOver)
@@ -172,7 +176,7 @@ document.getElementById('hit').addEventListener('click', function () {
 document.getElementById('stand').addEventListener('click', function () {
     if (gameOver)
         return;
-    gameOver = true; // Prevent further hits
+    gameOver = true;
     dealerTurn();
 });
 document.getElementById('restart').addEventListener('click', function () {

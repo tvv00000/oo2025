@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Blackjack - Rogue-Like Edition</title>
   <link rel="stylesheet" href="style.css" />
+  <script type="module" src="game.js" defer></script>
 </head>
 <body>
   <div class="rogue-bg"></div>
@@ -14,13 +15,13 @@
     <div class="hand">
       <h2>Player</h2>
       <div class="cards" id="player-hand">--</div>
-      <div>Total: <span id="player-total">0</span></div>
+      <div>Total: <span id="player-total">-</span></div>
     </div>
 
     <div class="hand">
       <h2>Dealer</h2>
       <div class="cards" id="dealer-hand">--</div>
-      <div>Total: <span id="dealer-total">0</span></div>
+      <div>Total: <span id="dealer-total">-</span></div>
     </div>
 
     <div>
@@ -31,8 +32,5 @@
 
     <div id="message"></div>
   </div>
-
-  <!-- Link to the compiled JavaScript -->
-  <script type="module" src="game.js"></script>
 </body>
 </html>

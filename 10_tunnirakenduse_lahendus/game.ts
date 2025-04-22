@@ -19,6 +19,7 @@ function createDeck(): Card[] {
   return deck;
 }
 
+//chatgpt
 function shuffle(deck: Card[]) {
   for (let i = deck.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
@@ -48,24 +49,60 @@ function calculateTotal(hand: Card[]): number {
 }
 
 function renderHand(hand: Card[], elementId: string, hideSecondCard = false) {
-  const el = document.getElementById(elementId)!;
-  el.innerHTML = hand.map((c, i) => {
-    if (hideSecondCard && i === 1) return '🂠'; // Hidden card symbol
+  const el = document.getElementById(elementId);
+  el!.innerHTML = hand.map((c, i) => {
+    if (hideSecondCard && i === 1) return '🂠';
     return `${c.value}${c.suit}`;
   }).join(' ');
 }
 
 function updateUI() {
   renderHand(playerHand, 'player-hand');
-  renderHand(dealerHand, 'dealer-hand', !revealDealerCard);
-  (document.getElementById('player-total') as HTMLElement).textContent = calculateTotal(playerHand).toString();
-  (document.getElementById('dealer-total') as HTMLElement).textContent = revealDealerCard
-    ? calculateTotal(dealerHand).toString()
-    : '?';
+
+  const hideDealerCard = !revealDealerCard;
+  renderHand(dealerHand, 'dealer-hand', hideDealerCard);
+
+  const playerTotal = calculateTotal(playerHand);
+  document.getElementById('player-total')!.textContent = playerTotal.toString();
+
+  let dealerTotal: string;
+
+  if (revealDealerCard) {
+    dealerTotal = calculateTotal(dealerHand).toString();
+  } else {
+    dealerTotal = '?';
+  }
+
+  document.getElementById('dealer-total')!.textContent = dealerTotal;
 }
 
-function showMessage(msg: string) {
-  (document.getElementById('message') as HTMLElement).textContent = msg;
+async function dealerTurn() {
+  revealDealerCard = true;
+  updateUI();
+
+  await new Promise(resolve => setTimeout(resolve, 1000));
+
+  while (calculateTotal(dealerHand) < 17) {
+    dealerHand.push(deck.pop()!);
+    updateUI();
+    await new Promise(resolve => setTimeout(resolve, 1000)); 
+  }
+
+  endGame();
+}
+
+function startGame() {
+  deck = createDeck();
+  shuffle(deck);
+  playerHand = [deck.pop()!, deck.pop()!];
+  dealerHand = [deck.pop()!, deck.pop()!];
+  gameOver = false;
+  revealDealerCard = false;
+
+  const messageElement = document.getElementById('message');
+  messageElement!.textContent = '';
+
+  updateUI();
 }
 
 function endGame() {
@@ -80,38 +117,10 @@ function endGame() {
   else if (playerTotal < dealerTotal) result = 'Dealer Wins!';
   else result = "It's a Tie!";
 
-  showMessage(result);
+  const messageElement = document.getElementById('message');
+  messageElement!.textContent = result;
+  
   gameOver = true;
-}
-
-function delay(ms: number): Promise<void> {
-  return new Promise(resolve => setTimeout(resolve, ms));
-}
-
-async function dealerTurn() {
-  revealDealerCard = true;
-  updateUI();
-
-  await delay(1000); // Reveal delay
-
-  while (calculateTotal(dealerHand) < 17) {
-    dealerHand.push(deck.pop()!);
-    updateUI();
-    await delay(1000); // Delay between card draws
-  }
-
-  endGame();
-}
-
-function startGame() {
-  deck = createDeck();
-  shuffle(deck);
-  playerHand = [deck.pop()!, deck.pop()!];
-  dealerHand = [deck.pop()!, deck.pop()!];
-  gameOver = false;
-  revealDealerCard = false;
-  showMessage('');
-  updateUI();
 }
 
 document.getElementById('hit')!.addEventListener('click', () => {
@@ -126,7 +135,7 @@ document.getElementById('hit')!.addEventListener('click', () => {
 
 document.getElementById('stand')!.addEventListener('click', () => {
   if (gameOver) return;
-  gameOver = true; // Prevent further hits
+  gameOver = true;
   dealerTurn();
 });
 
