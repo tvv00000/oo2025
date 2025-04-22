@@ -41,18 +41,27 @@ var playerHand = [];
 var dealerHand = [];
 var gameOver = false;
 var revealDealerCard = false;
-function createDeck() {
+var scoringMethod = '21';
+var deckType = 'standard';
+function createDeck(deckType) {
     var deck = [];
+    var selectedValues = values;
+    if (deckType === 'odd') {
+        selectedValues = ['3', '5', '7', '9', 'A'];
+    }
+    else if (deckType === 'even') {
+        selectedValues = ['2', '4', '6', '8', '10', 'J', 'Q', 'K'];
+    }
     for (var _i = 0, suits_1 = suits; _i < suits_1.length; _i++) {
         var suit = suits_1[_i];
-        for (var _a = 0, values_1 = values; _a < values_1.length; _a++) {
-            var value = values_1[_a];
+        for (var _a = 0, selectedValues_1 = selectedValues; _a < selectedValues_1.length; _a++) {
+            var value = selectedValues_1[_a];
             deck.push({ value: value, suit: suit });
         }
     }
     return deck;
 }
-//chatgpt
+//chatgpt shuffle
 function shuffle(deck) {
     var _a;
     for (var i = deck.length - 1; i > 0; i--) {
@@ -77,7 +86,8 @@ function calculateTotal(hand) {
         if (card.value === 'A')
             aces++;
     }
-    while (total > 21 && aces > 0) {
+    var targetScore = scoringMethod === '25' ? 25 : 21;
+    while (total > targetScore && aces > 0) {
         total -= 10;
         aces--;
     }
@@ -86,11 +96,13 @@ function calculateTotal(hand) {
 function renderHand(hand, elementId, hideSecondCard) {
     if (hideSecondCard === void 0) { hideSecondCard = false; }
     var el = document.getElementById(elementId);
-    el.innerHTML = hand.map(function (c, i) {
+    el.innerHTML = hand
+        .map(function (c, i) {
         if (hideSecondCard && i === 1)
             return '🂠';
         return "".concat(c.value).concat(c.suit);
-    }).join(' ');
+    })
+        .join(' ');
 }
 function updateUI() {
     renderHand(playerHand, 'player-hand');
@@ -109,6 +121,7 @@ function updateUI() {
 }
 function dealerTurn() {
     return __awaiter(this, void 0, void 0, function () {
+        var threshold;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -117,9 +130,10 @@ function dealerTurn() {
                     return [4 /*yield*/, new Promise(function (resolve) { return setTimeout(resolve, 1000); })];
                 case 1:
                     _a.sent();
+                    threshold = scoringMethod === '25' ? 20 : 17;
                     _a.label = 2;
                 case 2:
-                    if (!(calculateTotal(dealerHand) < 17)) return [3 /*break*/, 4];
+                    if (!(calculateTotal(dealerHand) < threshold)) return [3 /*break*/, 4];
                     dealerHand.push(deck.pop());
                     updateUI();
                     return [4 /*yield*/, new Promise(function (resolve) { return setTimeout(resolve, 1000); })];
@@ -134,14 +148,21 @@ function dealerTurn() {
     });
 }
 function startGame() {
-    deck = createDeck();
+    var scoringOptions = ['21', '25'];
+    var deckOptions = ['standard', 'odd', 'even'];
+    scoringMethod = scoringOptions[Math.floor(Math.random() * scoringOptions.length)];
+    deckType = deckOptions[Math.floor(Math.random() * deckOptions.length)];
+    document.getElementById('scoring-method-label').textContent =
+        scoringMethod === '21' ? 'Standard (21)' : 'High Score (25)';
+    document.getElementById('deck-type-label').textContent =
+        deckType.charAt(0).toUpperCase() + deckType.slice(1);
+    deck = createDeck(deckType);
     shuffle(deck);
     playerHand = [deck.pop(), deck.pop()];
     dealerHand = [deck.pop(), deck.pop()];
     gameOver = false;
     revealDealerCard = false;
-    var messageElement = document.getElementById('message');
-    messageElement.textContent = '';
+    document.getElementById('message').textContent = '';
     updateUI();
 }
 function endGame() {
@@ -149,9 +170,10 @@ function endGame() {
     var playerTotal = calculateTotal(playerHand);
     var dealerTotal = calculateTotal(dealerHand);
     var result = '';
-    if (playerTotal > 21)
+    var bustLimit = scoringMethod === '25' ? 25 : 21;
+    if (playerTotal > bustLimit)
         result = 'Player Busts! Dealer Wins!';
-    else if (dealerTotal > 21)
+    else if (dealerTotal > bustLimit)
         result = 'Dealer Busts! Player Wins!';
     else if (playerTotal > dealerTotal)
         result = 'Player Wins!';
@@ -159,8 +181,7 @@ function endGame() {
         result = 'Dealer Wins!';
     else
         result = "It's a Tie!";
-    var messageElement = document.getElementById('message');
-    messageElement.textContent = result;
+    document.getElementById('message').textContent = result;
     gameOver = true;
 }
 document.getElementById('hit').addEventListener('click', function () {
@@ -168,7 +189,8 @@ document.getElementById('hit').addEventListener('click', function () {
         return;
     playerHand.push(deck.pop());
     updateUI();
-    if (calculateTotal(playerHand) > 21) {
+    var bustLimit = scoringMethod === '25' ? 25 : 21;
+    if (calculateTotal(playerHand) > bustLimit) {
         revealDealerCard = true;
         endGame();
     }
