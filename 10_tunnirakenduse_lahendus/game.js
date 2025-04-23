@@ -154,7 +154,7 @@ function startGame() {
     scoringMethod = scoringOptions[Math.floor(Math.random() * scoringOptions.length)];
     deckType = deckOptions[Math.floor(Math.random() * deckOptions.length)];
     document.getElementById('scoring-method-label').textContent =
-        scoringMethod === '21' ? 'Standard (21)' : 'High Score (25)';
+        scoringMethod === '25' ? 'High Score (25)' : 'Standard (21)';
     document.getElementById('deck-type-label').textContent =
         deckType.charAt(0).toUpperCase() + deckType.slice(1);
     deck = createDeck(deckType);

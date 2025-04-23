@@ -9,6 +9,7 @@ let playerHand: Card[] = [];
 let dealerHand: Card[] = [];
 let gameOver = false;
 let revealDealerCard = false;
+
 let scoringMethod: string = '21';
 let deckType: string = 'standard';
 
@@ -52,6 +53,7 @@ function calculateTotal(hand: Card[]): number {
     total += value;
     if (card.value === 'A') aces++;
   }
+
   const targetScore = scoringMethod === '25' ? 25 : 21;
   while (total > targetScore && aces > 0) {
     total -= 10;
@@ -72,6 +74,7 @@ function renderHand(hand: Card[], elementId: string, hideSecondCard = false) {
 
 function updateUI() {
   renderHand(playerHand, 'player-hand');
+
   const hideDealerCard = !revealDealerCard;
   renderHand(dealerHand, 'dealer-hand', hideDealerCard);
 
@@ -111,9 +114,8 @@ function startGame() {
   scoringMethod = scoringOptions[Math.floor(Math.random() * scoringOptions.length)];
   deckType = deckOptions[Math.floor(Math.random() * deckOptions.length)];
 
-
   document.getElementById('scoring-method-label')!.textContent =
-    scoringMethod === '21' ? 'Standard (21)' : 'High Score (25)';
+    scoringMethod === '25' ? 'High Score (25)' : 'Standard (21)';
 
   document.getElementById('deck-type-label')!.textContent =
     deckType.charAt(0).toUpperCase() + deckType.slice(1);
