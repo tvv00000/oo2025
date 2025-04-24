@@ -2,7 +2,6 @@ import { highway } from '../07_testid/highway';
 import { id } from '../07_testid/id';
 //import { kalkulaator } from '../07_testid/kalkulaator';
 
-
 function sum(a: number, b: number): number {
     return a + b;
   }
@@ -42,4 +41,45 @@ describe('Rectangle', () => {
     const rect = new Rectangle(10, 5);
     expect(rect.getPerimeter()).toBe(30);
   });
+});
+
+
+
+
+import { WordLetterCounter } from '../12_proovikontrolltoo2/testkt';
+
+describe('WordLetterCounter', () => {
+    let counter: WordLetterCounter;
+
+    beforeEach(() => {
+        counter = new WordLetterCounter();
+    });
+
+    test('a', () => {
+        expect(counter.counter('a', 'Pere')).toBe(0);
+    });
+
+    test('P', () => {
+        expect(counter.counter('p', 'Pere')).toBe(0);
+    });
+
+    test('P', () => {
+        expect(counter.counter('P', 'Pere')).toBe(1);
+    });
+
+    test('e', () => {
+        expect(counter.counter('e', 'Pere')).toBe(2);
+    });
+
+    test('empty word', () => {
+        expect(counter.counter('a', '')).toBe(0);
+    });
+
+    test('empty letter', () => {
+      expect(counter.counter('', 'Pere')).toBe(0);
+    });
+
+    test('space " "', () => {
+      expect(counter.counter(' ', 'Pere  ')).toBe(2);
+    });
 });

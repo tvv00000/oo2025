@@ -4,7 +4,7 @@ const values = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A'
 type Card = { value: string; suit: string };
 
 let deck: Card[] = [];
-let testdeck: Card[] = [];
+
 let playerHand: Card[] = [];
 let dealerHand: Card[] = [];
 let gameOver = false;
@@ -166,7 +166,6 @@ document.getElementById('stand')!.addEventListener('click', () => {
   if (gameOver) return;
   gameOver = true;
   dealerTurn();
-
 });
 
 document.getElementById('restart')!.addEventListener('click', () => {
