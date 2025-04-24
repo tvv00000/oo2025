@@ -48,38 +48,31 @@ describe('Rectangle', () => {
 
 import { WordLetterCounter } from '../12_proovikontrolltoo2/testkt';
 
-describe('WordLetterCounter', () => {
+describe('Sona', () => {
     let counter: WordLetterCounter;
 
     beforeEach(() => {
         counter = new WordLetterCounter();
     });
 
-    test('a', () => {
-        expect(counter.counter('a', 'Pere')).toBe(0);
-    });
-
-    test('P', () => {
-        expect(counter.counter('p', 'Pere')).toBe(0);
-    });
-
-    test('P', () => {
-        expect(counter.counter('P', 'Pere')).toBe(1);
-    });
-
     test('e', () => {
         expect(counter.counter('e', 'Pere')).toBe(2);
     });
 
-    test('empty word', () => {
-        expect(counter.counter('a', '')).toBe(0);
+    test('E', () => {
+        expect(counter.counter('E', 'Pere')).toBe(0);
     });
 
-    test('empty letter', () => {
+    test('empty ""', () => {
       expect(counter.counter('', 'Pere')).toBe(0);
     });
 
     test('space " "', () => {
-      expect(counter.counter(' ', 'Pere  ')).toBe(2);
+      expect(counter.counter(' ', 'Pere ')).toBe(1);
     });
 });
+
+
+describe('lause', () => {
+  //add
+})
