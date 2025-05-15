@@ -1,0 +1,16 @@
+objektorjenteerituse head ning tülikad küljed
+
++
+easy to upgrade/change?
+[loom: heli] -> [loom: heli, nimi, liik]
+
+ilus ja organiseeritud?
+
+Klasse ja objektide saab hiljem korduvalt kasutada?
+[nt loom klass, saab teha erinevaid loomi] [koer: 'auh', kass: 'mjau']
+
+static
+[error not in run?]
+-
+npx tsc
+[votab aega]
